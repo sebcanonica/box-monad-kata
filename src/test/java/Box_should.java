@@ -6,9 +6,10 @@ import java.util.function.Function;
 import static org.junit.Assert.assertEquals;
 
 public class Box_should {
-    // PRIME DIRECTIVE: NEVER EVER IMPLEMENT AN ACCESSOR !!!
+    // PRIME DIRECTIVE: NEVER EVER IMPLEMENT AN ACCESSOR!!!
     // This is the *feature* of our box
-    // But how can we still do useful things with it ?
+    // But how can we still do useful things with it?
+    // Second directive: never mutate the boxed value.
     // Rules:
     //      1) make the uncommented tests pass
     //      2) refactor the production code to generics
