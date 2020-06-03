@@ -11,8 +11,9 @@ public class Box_should {
     // But how can we still do useful things with it ?
     // Rules:
     //      1) make the uncommented tests pass
-    //      2) uncomment the next test
-    //      3) go to step 1
+    //      2) refactor the production code to generics
+    //      3) uncomment the next test
+    //      4) go to step 1
 
     @Test
     public void consider_2_boxed_int_with_same_value_to_be_equals() {
@@ -39,6 +40,7 @@ public class Box_should {
 
 /*    @Test
     public void implement_applicative_app() {
+        // Hint: might require a very ugly unchecked cast
         Box<Function<Integer, Double>> aBoxedIncrement = Box.pure(x -> x+1.5);
         Box<Integer> a5 = Box.pure(5);
 
@@ -70,13 +72,14 @@ public class Box_should {
 
 /*    @Test
     public void use_fmap_and_app_with_binary_functions() {
-        BiFunction<Integer, Integer, Integer> add = (x, y) -> x+y;
+        // Should not need new production code
+        BiFunction<Integer, Integer, Integer> minus = (x, y) -> x-y;
         Box<Integer> a2 = Box.pure(2);
         Box<Integer> a5 = Box.pure(5);
 
-        Box<Integer> actual = a2.fmap(Curry.fi(add)).app(a5);
+        Box<Integer> actual = a2.fmap(Curry.fi(minus)).app(a5);
 
-        assertEquals(actual, Box.pure(7));
+        assertEquals(actual, Box.pure(-3));
     }*/
 
 /*    @Test
