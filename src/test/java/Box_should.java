@@ -53,16 +53,15 @@ public class Box_should {
         static Integer curryAdd(Integer a, Integer b) {
             return partialAdd(a).apply(b);
         }
-
-        static Integer autocurryAdd(Integer a, Integer b) {
-            return Curry.fi(MyMath::add).apply(a).apply(b);
-        }
     }
 
-    public static class Curry<T, U, R> {
-        static <T, U, R> Function<T, Function<U, R>> fi(BiFunction<T, U, R> f) {
-            return t -> u -> f.apply(t, u);
-        }
+    @Test
+    public void implement_a_generic_curryfi_for_bifunction() {
+        BiFunction<Integer, Short, Double> biFn = (x, y) -> x+2.5*y;
+
+        Function<Integer, Function<Short, Double>> actual = Curry.fi(biFn);
+
+        assertEquals(biFn.apply(1,(short)2), actual.apply(1).apply((short)2));
     }
 
     @Test
