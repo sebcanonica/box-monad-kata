@@ -95,6 +95,19 @@ public class Box_should {
     }*/
 
 /*    @Test
+    public void chain_monad_bind() {
+        // Should not need new production code
+        Box<String> log = Box.pure("");
+        Function<String, Function<String, Box<String>>> concat = Curry.fi((x, y) -> Box.pure(y.concat(x)));
+
+        Box<String> actual = log
+                .bind(concat.apply("Hello "))
+                .bind(concat.apply("World!"));
+
+        assertEquals(actual, Box.pure("Hello World!"));
+    }*/
+
+/*    @Test
     public void reimplement_fmap_WITHOUT_USING_THE_RAW_VALUE() {
         // Hint: use bind and pure
         Box<Double> aDouble = new Box<>(5.55);
