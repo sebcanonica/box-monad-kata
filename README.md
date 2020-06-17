@@ -1,10 +1,10 @@
-# Java Monad discovery kata
+# Box monad kata
 
 A coding kata to understand what is a monad
  (or, more precisely, what I understood :-)).
 
 You will implement a Box<T> which wraps any
-kind of value, and turn it into a monad.
+kind of value, and turn this box into a monad.
  
 Open the [Box_should.java](src/test/java/Box_should.java) 
 test file and follow the instructions in there.
