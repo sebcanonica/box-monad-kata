@@ -23,23 +23,23 @@ public class Box_should {
         assertThat(a2).isEqualTo(another2);
     }
 
-    /*@Test
+    @Test
     public void implement_functor_fmap() {
         Box<Double> aDouble = new Box<>(5.55);
 
         Box<Long> actual = aDouble.fmap(Math::round);
 
         assertThat(actual).isEqualTo( new Box<>((long) 6));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void implement_applicative_pure() {
         Box<Integer> actual = Box.pure(3);
 
         assertThat(actual).isEqualTo(new Box<>(3));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void implement_applicative_app() {
         // Hint: might require a very ugly unchecked cast
         Box<Function<Integer, Double>> aBoxedIncrement = Box.pure(x -> x+1.5);
@@ -48,9 +48,9 @@ public class Box_should {
         Box<Double> actual = aBoxedIncrement.app(a5);
 
         assertThat(actual).isEqualTo(Box.pure(6.5));
-    }*/
+    }
 
-    /*static class MyMath {
+    static class MyMath {
         static Integer add(Integer a, Integer b) {
             return a + b;
         }
@@ -68,17 +68,25 @@ public class Box_should {
 
         Function<Integer, Function<Short, Double>> actual = Curry.fi(biFn);
 
-        assertThat(actual.apply(1).apply((short)2)).isEqualTo(biFn.apply(1,(short)2));
-    }*/
+        // cool method
+        Function<Short, Double> partiallyAppliedFn = actual.apply(1);
+        Double resultThroughCurrifiedFunction = partiallyAppliedFn.apply((short) 2);
 
-    /*@Test
+        // traditional method
+        Double resultObtainedWithNormalFunctionApplication = biFn.apply(1, (short) 2);
+
+        assertThat(resultThroughCurrifiedFunction).isEqualTo(resultObtainedWithNormalFunctionApplication);
+    }
+
+    @Test
     public void use_fmap_and_app_with_binary_functions() {
         // Should not need new production code
         BiFunction<Integer, Integer, Integer> minus = (x, y) -> x-y;
         Box<Integer> a2 = Box.pure(2);
         Box<Integer> a5 = Box.pure(5);
 
-        Box<Integer> actual = a2.fmap(Curry.fi(minus)).app(a5);
+        Box<Function<Integer, Integer>> resultFmap = a2.fmap(Curry.fi(minus));
+        Box<Integer> actual = resultFmap.app(a5);
 
         assertThat(actual).isEqualTo(Box.pure(-3));
     }
@@ -94,9 +102,9 @@ public class Box_should {
                 .app(Box.pure(7));
 
         assertThat(actual).isEqualTo(Box.pure(3.0));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void implement_monad_bind() {
         Box<String> securePassword = Box.pure("p@ssw0rd"); // Safely hidden in a box
         Function<String, Box<Integer>> secureHashing =
@@ -105,9 +113,9 @@ public class Box_should {
         Box<Integer> actual = securePassword.bind(secureHashing);
 
         assertThat(actual).isEqualTo(Box.pure("p@ssw0rd".hashCode()));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void chain_monad_bind() {
         // Should not need new production code
         Box<String> log = Box.pure("");
@@ -118,9 +126,9 @@ public class Box_should {
                 .bind(concat.apply("World!"));
 
         assertThat(actual).isEqualTo(Box.pure("Hello World!"));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void reimplement_fmap_WITHOUT_USING_THE_RAW_VALUE() {
         // Hint: use bind and pure
         Box<Double> aDouble = new Box<>(5.55);
@@ -128,7 +136,7 @@ public class Box_should {
         Box<Long> actual = aDouble.fmapMonad(Math::round);
 
         assertThat(actual).isEqualTo(new Box<>((long) 6));
-    }*/
+    }
 
     /*@Test
     public void reimplement_app_WITHOUT_USING_THE_RAW_VALUE() {
